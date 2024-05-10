@@ -7,12 +7,15 @@ class GameStart:
         self.how_many_decks = None
 
     def play_prompt(self):
-        self.would_you_like_to_play = input("Would you like to play High and Low? y/n: ")
+        self.would_you_like_to_play = input("Would you like to play High and Low? (y/n): ")
 
-        if self.would_you_like_to_play.lower() not in ("y", "n"):
-            self.play_prompt()
-        else:
+        if self.would_you_like_to_play.lower() == "y":
             self.what_is_players_name = input("What is your name?: ")
+        elif self.would_you_like_to_play.lower() == "n":
+            print(f" N input")
+            return
+        elif self.would_you_like_to_play.lower() not in ("y", "n"):
+            self.play_prompt()
 
     def deck_prompt(self):
         self.deck_prompt = int(input("How many decks do you want to use? 1-4:"))
@@ -23,6 +26,8 @@ class GameStart:
 
     def start_game(self):
         self.play_prompt()
+        if self.would_you_like_to_play.lower() == "n":
+            return
         self.deck_prompt()
         # print(self.would_you_like_to_play, self.what_is_players_name, self.how_many_decks)
 
